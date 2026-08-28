@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSE Freshers CR Elections 2026</title>
+<meta name="description" content="Candidates for the IIT BHU CSE Freshers Class Representative elections. Online voting on 4 September 2026.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSE Freshers CR Elections 2026">
+<meta property="og:description" content="Candidates for the three Class Representative seats. Online voting, 4 September 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Cpath d='M10 16.5l4 4 8-8.5' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap">
+<style>
+:root{
+  --blue:#2563EB;
+  --blue-dark:#1D4ED8;
+  --ink:#111114;
+  --body:#3A3A42;
+  --grey:#8A8A96;
+  --page:#FFFFFF;
+  --chip:#F1F3F9;
+  --star:#F5A524;
+
+  --card-w:clamp(232px,74vw,430px);
+  --card-r:26px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--page);
+  color:var(--ink);
+  font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:1rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:10px}
+
+.wrap{width:min(1180px,100% - 2rem);margin-inline:auto}
+
+/* ---------------- heading ---------------- */
+.head{text-align:center;padding:3.25rem 0 0}
+.head h1{
+  font-weight:800;font-size:clamp(2.1rem,7.2vw,4.25rem);
+  line-height:1.05;letter-spacing:-.035em;text-wrap:balance;
+  margin:0;color:var(--ink);
+}
+.head p{
+  margin:1.1rem auto 0;max-width:56ch;
+  font-size:clamp(1rem,2.6vw,1.25rem);font-weight:400;color:var(--body);
+  text-wrap:balance;
+}
+
+/* countdown strip */
+.clock{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:.35rem 2.25rem;
+  margin:2rem 0 0;
+}
+.clock__cell{text-align:center;min-width:4.25rem}
+.clock__num{
+  display:block;font-weight:700;font-size:clamp(1.5rem,4.6vw,2.1rem);
+  line-height:1.1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;
+  color:var(--ink);
+}
+.clock__unit{
+  display:block;margin-top:.1rem;
+  font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey);
+}
+.clock.is-live .clock__num{font-size:clamp(1.1rem,3.6vw,1.5rem);color:var(--blue)}
+
+/* ---------------- seat tabs ---------------- */
+.tablist{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin:2.25rem 0 0}
+.tab{
+  cursor:pointer;border:0;border-radius:99px;
+  padding:.6rem 1.35rem;
+  background:var(--chip);color:var(--body);
+  font-weight:600;font-size:.9375rem;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.tab:hover{transform:translateY(-1px)}
+.tab[aria-selected="true"]{background:var(--blue);color:#fff}
+.tab__count{opacity:.65;margin-left:.4rem;font-weight:500}
+
+/* ---------------- carousel ---------------- */
+.stage{
+  position:relative;
+  margin:2.5rem auto 0;
+  padding-inline:clamp(0px,4vw,72px);
+  display:flex;align-items:center;justify-content:center;
+}
+.track{
+  position:relative;
+  width:var(--card-w);
+  aspect-ratio:.74;
+  perspective:1600px;
+  transform-style:preserve-3d;
+}
+.slide{
+  position:absolute;inset:0;
+  border-radius:var(--card-r);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2.25rem 1.5rem;
+  color:#fff;
+  box-shadow:0 26px 50px -22px rgba(17,17,20,.55);
+  transition:transform .55s cubic-bezier(.22,.75,.3,1),opacity .45s ease,filter .45s ease;
+  will-change:transform;
+  overflow:hidden;
+}
+.slide h3{
+  font-family:"Playfair Display",Georgia,serif;
+  font-weight:600;font-size:clamp(1.6rem,5.6vw,2.6rem);
+  line-height:1.1;letter-spacing:-.01em;text-wrap:balance;
+  margin:0;
+}
+.slide p{
+  margin:1rem 0 0;max-width:22ch;
+  font-size:clamp(.875rem,2.6vw,1.0625rem);font-weight:500;
+  color:rgba(255,255,255,.86);
+}
+.slide[data-pos="0"]{transform:translateX(0) scale(1);opacity:1;z-index:30}
+.slide[data-pos="-1"],.slide[data-pos="1"]{
+  opacity:.95;filter:saturate(.8) brightness(.72);z-index:20;
+}
+.slide[data-pos="-1"]{transform:translateX(-62%) scale(.86)}
+.slide[data-pos="1"]{transform:translateX(62%) scale(.86)}
+.slide[data-pos="-2"],.slide[data-pos="2"]{
+  opacity:.9;filter:saturate(.7) brightness(.62);z-index:10;
+}
+.slide[data-pos="-2"]{transform:translateX(-108%) scale(.74)}
+.slide[data-pos="2"]{transform:translateX(108%) scale(.74)}
+.slide[data-pos="hidden"]{transform:translateX(0) scale(.6);opacity:0;z-index:0;pointer-events:none}
+
+.nav{
+  position:absolute;top:50%;translate:0 -50%;
+  width:clamp(44px,11vw,64px);aspect-ratio:1;
+  border:0;border-radius:50%;cursor:pointer;
+  background:#fff;color:var(--blue);
+  display:grid;place-items:center;
+  box-shadow:0 10px 26px -8px rgba(17,17,20,.28);
+  z-index:40;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.nav:hover{transform:translateY(-1px) scale(1.05);box-shadow:0 14px 30px -8px rgba(17,17,20,.34)}
+.nav:active{transform:scale(.96)}
+.nav svg{width:45%;height:45%}
+.nav--prev{left:0}
+.nav--next{right:0}
+
+/* active candidate block under the card */
+.now{margin:-2.9rem auto 0;text-align:center;position:relative;z-index:35}
+.now__photo{
+  width:clamp(70px,17vw,92px);aspect-ratio:1;border-radius:50%;
+  object-fit:cover;margin:0 auto;
+  border:4px solid #fff;background:#E8ECF6;
+  box-shadow:0 10px 24px -10px rgba(17,17,20,.45);
+}
+.now__name{
+  margin:1rem 0 0;font-weight:700;
+  font-size:clamp(1.0625rem,3.4vw,1.375rem);letter-spacing:-.01em;
+}
+.now__seat{
+  display:inline-block;margin:.55rem 0 0;
+  padding:.2rem .8rem;border-radius:99px;
+  background:var(--chip);color:var(--body);
+  font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+}
+.dots{display:flex;justify-content:center;gap:.4rem;margin:1.5rem 0 0;flex-wrap:wrap}
+.dot{
+  width:8px;height:8px;border-radius:50%;border:0;padding:0;cursor:pointer;
+  background:#D9DDE8;transition:background .2s ease,width .2s ease;
+}
+.dot[aria-current="true"]{background:var(--blue);width:22px;border-radius:99px}
+
+/* ---------------- footer ---------------- */
+.foot{margin-top:4.5rem;border-top:1px solid #ECEEF4;padding:2.75rem 0 3rem}
+.foot__grid{display:grid;grid-template-columns:1fr;gap:1.5rem;text-align:center}
+.foot dt{
+  margin:0 0 .3rem;font-size:.6875rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--grey);
+}
+.foot dd{margin:0;font-weight:600;font-size:1.0625rem}
+.foot dd small{
+  display:block;margin-top:.2rem;font-weight:400;
+  font-size:.8125rem;color:var(--grey);line-height:1.5;
+}
+.foot__note{
+  margin:2.25rem auto 0;max-width:66ch;text-align:center;
+  font-size:.8125rem;color:var(--grey);
+}
+
+@media (min-width:768px){
+  .head{padding-top:4.5rem}
+  .foot__grid{grid-template-columns:repeat(3,1fr);gap:2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap head">
+  <h1>CSE Freshers CR Elections 2026</h1>
+  <p>Eleven candidates from the first-year Computer Science &amp; Engineering batch, standing for three Class Representative seats at IIT (BHU) Varanasi.</p>
+
+  <div class="clock" id="clock" role="timer" aria-live="off" aria-label="Time until voting opens"></div>
+
+  <div class="tablist" role="tablist" aria-label="Choose a seat"></div>
+</header>
+
+<main class="wrap" id="seats">
+  <div class="stage">
+    <button class="nav nav--prev" type="button" id="prev" aria-label="Previous candidate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+    </button>
+
+    <div class="track" id="track" role="tabpanel" aria-labelledby="tab-girls"></div>
+
+    <button class="nav nav--next" type="button" id="next" aria-label="Next candidate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+    </button>
+  </div>
+
+  <div class="now">
+    <img class="now__photo" id="now-photo" src="" alt="" width="92" height="92" decoding="async">
+    <p class="now__name" id="now-name"></p>
+    <p class="now__seat" id="now-seat"></p>
+  </div>
+
+  <div class="dots" id="dots" role="tablist" aria-label="Candidates"></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <dl class="foot__grid">
+      <div><dt>Voting date</dt><dd id="foot-date"></dd></div>
+      <div><dt>Mode</dt><dd id="foot-mode"></dd></div>
+      <div><dt>Timing</dt><dd id="foot-timing"></dd></div>
+    </dl>
+    <p class="foot__note">Unofficial candidate listing maintained by the CSE freshers&rsquo; election volunteers. This page lists candidates only and does not collect votes. Details subject to change until the returning officer&rsquo;s final notice.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT EVERYTHING BELOW THIS LINE
+   ============================================================ */
+
+// Countdown target — when voting opens (IST). YYYY-MM-DDTHH:MM:SS+05:30
+const VOTING_OPENS = "2026-09-04T09:00:00+05:30";
+
+// Footer details.
+const LOGISTICS = {
+  date:       "Friday, 4 September 2026",
+  dateNote:   "Odd semester, 2026–27",
+  mode:       "Online",
+  modeNote:   "Voting link shared on the class group",
+  timing:     "09:00 – 17:00 IST",
+  timingNote: "Timings to be confirmed"
+};
+
+// The three seats, in tab order.
+const SEATS = [
+  { id: "girls", label: "Girls' Seat", title: "Girls' Representative" },
+  { id: "boys",  label: "Boys' Seat",  title: "Boys' Representative"  },
+  { id: "open",  label: "Open Seat",   title: "Open / Neutral Seat"   }
+];
+
+// Candidates. `seat` is "girls" or "boys".
+// `photo`: a path or URL, e.g. "photos/soma-srinidhi.jpg". Leave "" for an initials avatar.
+const CANDIDATES = [
+  { name: "Soma Srinidhi",   seat: "girls", photo: "" },
+  { name: "Ashika Agrawal",  seat: "girls", photo: "" },
+
+  { name: "Sumit Kasaudhan", seat: "boys",  photo: "" },
+  { name: "Pranab Kumar",    seat: "boys",  photo: "" },
+  { name: "Rajat Dubey",     seat: "boys",  photo: "" },
+  { name: "Aditya Narayan",  seat: "boys",  photo: "" },
+  { name: "Harsh Modi",      seat: "boys",  photo: "" },
+  { name: "Maddi Saketh",    seat: "boys",  photo: "" },
+  { name: "Aadvik Nautiyal", seat: "boys",  photo: "" },
+  { name: "Sahil Gupta",     seat: "boys",  photo: "" },
+  { name: "Gopal Saxena",    seat: "boys",  photo: "" }
+];
+
+// Who appears under the Open seat.
+//   "all"                            -> every candidate above (2 girls + 9 boys)
+//   ["Harsh Modi", "Soma Srinidhi"]  -> only these names
+const OPEN_SEAT = "all";
+
+// Card gradients, cycled across the candidates in order.
+const GRADIENTS = [
+  "linear-gradient(155deg,#2F6B4F 0%,#0F2E22 100%)",
+  "linear-gradient(155deg,#A78BFA 0%,#452A38 100%)",
+  "linear-gradient(155deg,#1E40AF 0%,#3B82F6 100%)",
+  "linear-gradient(155deg,#C2410C 0%,#3B0764 100%)",
+  "linear-gradient(155deg,#2E9E5B 0%,#14532D 100%)",
+  "linear-gradient(155deg,#0E7490 0%,#082F49 100%)"
+];
+
+/* ============================================================
+   NO EDITS NEEDED BELOW
+   ============================================================ */
+
+const $ = (sel) => document.querySelector(sel);
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[ch]));
+}
+
+/* --- placeholder avatar --- */
+function initials(name) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+function avatar(name) {
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">' +
+      '<circle cx="60" cy="60" r="60" fill="#E8ECF6"/>' +
+      '<text x="60" y="62" fill="#2563EB" font-family="Poppins, Helvetica, Arial, sans-serif"' +
+      ' font-size="42" font-weight="700" text-anchor="middle" dominant-baseline="central">' +
+      escapeHtml(initials(name)) + '</text>' +
+    '</svg>';
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+const photoOf = (c) => (c.photo ? c.photo : avatar(c.name));
+
+/* --- countdown --- */
+const clockEl = $("#clock");
+const target = new Date(VOTING_OPENS).getTime();
+let ticker;
+const pad = (n) => String(n).padStart(2, "0");
+
+function renderClock() {
+  const diff = target - Date.now();
+  if (diff <= 0) {
+    clockEl.classList.add("is-live");
+    clockEl.innerHTML =
+      '<div class="clock__cell" style="min-width:auto">' +
+      '<span class="clock__num">Voting is open</span>' +
+      '<span class="clock__unit">Link on the class group</span></div>';
+    clearInterval(ticker);
+    return;
+  }
+  const s = Math.floor(diff / 1000);
+  const cells = [
+    [Math.floor(s / 86400),     "Days"],
+    [Math.floor(s / 3600) % 24, "Hours"],
+    [Math.floor(s / 60) % 60,   "Minutes"],
+    [s % 60,                    "Seconds"]
+  ];
+  clockEl.innerHTML = cells.map(([v, u]) =>
+    '<div class="clock__cell"><span class="clock__num">' + pad(v) + '</span>' +
+    '<span class="clock__unit">' + u + '</span></div>'
+  ).join("");
+}
+
+/* --- carousel --- */
+const tablist = $(".tablist");
+const track = $("#track");
+const dotsEl = $("#dots");
+const nowPhoto = $("#now-photo");
+const nowName = $("#now-name");
+const nowSeat = $("#now-seat");
+
+let seatId = SEATS[0].id;
+let list = [];
+let index = 0;
+
+function bySeat(id) {
+  if (id === "open") {
+    if (OPEN_SEAT === "all") return CANDIDATES.slice();
+    return CANDIDATES.filter((c) => OPEN_SEAT.includes(c.name));
+  }
+  return CANDIDATES.filter((c) => c.seat === id);
+}
+const seatTitleOf = (id) => (SEATS.find((s) => s.id === id) || {}).title || "";
+
+function renderTabs() {
+  tablist.innerHTML = SEATS.map((s, i) =>
+    '<button class="tab" role="tab" type="button" id="tab-' + s.id + '"' +
+    ' aria-selected="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '"' +
+    ' data-seat="' + s.id + '">' + escapeHtml(s.label) +
+    '<span class="tab__count">' + bySeat(s.id).length + '</span></button>'
+  ).join("");
+}
+
+function buildSlides() {
+  track.innerHTML = list.map((c, i) =>
+    '<article class="slide" data-i="' + i + '" style="background:' +
+    GRADIENTS[i % GRADIENTS.length] + '">' +
+      '<h3>' + escapeHtml(c.name) + '</h3>' +
+      '<p>' + escapeHtml(seatTitleOf(c.seat)) + '</p>' +
+    '</article>'
+  ).join("");
+
+  dotsEl.innerHTML = list.map((c, i) =>
+    '<button class="dot" type="button" data-i="' + i + '"' +
+    ' aria-label="Show ' + escapeHtml(c.name) + '"></button>'
+  ).join("");
+}
+
+function paint() {
+  const n = list.length;
+  track.querySelectorAll(".slide").forEach((el) => {
+    const i = Number(el.dataset.i);
+    let off = i - index;
+    if (n > 4) {                       // wrap so the ring stays continuous
+      if (off > n / 2) off -= n;
+      if (off < -n / 2) off += n;
+    }
+    el.dataset.pos = Math.abs(off) <= 2 ? String(off) : "hidden";
+    el.setAttribute("aria-hidden", off === 0 ? "false" : "true");
+  });
+
+  dotsEl.querySelectorAll(".dot").forEach((d, i) => {
+    d.setAttribute("aria-current", String(i === index));
+  });
+
+  const c = list[index];
+  if (!c) return;
+  nowPhoto.src = photoOf(c);
+  nowPhoto.alt = c.name;
+  nowName.textContent = c.name;
+  nowSeat.textContent = seatTitleOf(c.seat);
+}
+
+function go(delta) {
+  if (!list.length) return;
+  index = (index + delta + list.length) % list.length;
+  paint();
+}
+
+function selectSeat(id) {
+  seatId = id;
+  list = bySeat(id);
+  index = 0;
+
+  tablist.querySelectorAll(".tab").forEach((btn) => {
+    const on = btn.dataset.seat === id;
+    btn.setAttribute("aria-selected", String(on));
+    btn.tabIndex = on ? 0 : -1;
+  });
+  track.setAttribute("aria-labelledby", "tab-" + id);
+
+  buildSlides();
+  paint();
+}
+
+/* interactions */
+$("#prev").addEventListener("click", () => go(-1));
+$("#next").addEventListener("click", () => go(1));
+
+track.addEventListener("click", (e) => {
+  const el = e.target.closest(".slide");
+  if (!el) return;
+  const i = Number(el.dataset.i);
+  if (i !== index) { index = i; paint(); }
+});
+
+dotsEl.addEventListener("click", (e) => {
+  const d = e.target.closest(".dot");
+  if (!d) return;
+  index = Number(d.dataset.i);
+  paint();
+});
+
+tablist.addEventListener("click", (e) => {
+  const btn = e.target.closest(".tab");
+  if (btn) selectSeat(btn.dataset.seat);
+});
+tablist.addEventListener("keydown", (e) => {
+  const step = { ArrowRight: 1, ArrowLeft: -1 };
+  if (!(e.key in step)) return;
+  e.preventDefault();
+  const i = SEATS.findIndex((s) => s.id === document.activeElement.dataset.seat);
+  const next = SEATS[(i + step[e.key] + SEATS.length) % SEATS.length];
+  selectSeat(next.id);
+  tablist.querySelector('[data-seat="' + next.id + '"]').focus();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.target.closest(".tablist")) return;
+  if (e.key === "ArrowLeft") go(-1);
+  if (e.key === "ArrowRight") go(1);
+});
+
+/* swipe */
+let startX = null;
+track.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+track.addEventListener("touchend", (e) => {
+  if (startX === null) return;
+  const dx = e.changedTouches[0].clientX - startX;
+  if (Math.abs(dx) > 45) go(dx < 0 ? 1 : -1);
+  startX = null;
+}, { passive: true });
+
+/* --- boot --- */
+const field = (value, note) => escapeHtml(value) + "<small>" + escapeHtml(note) + "</small>";
+$("#foot-date").innerHTML = field(LOGISTICS.date, LOGISTICS.dateNote);
+$("#foot-mode").innerHTML = field(LOGISTICS.mode, LOGISTICS.modeNote);
+$("#foot-timing").innerHTML = field(LOGISTICS.timing, LOGISTICS.timingNote);
+
+renderTabs();
+selectSeat(SEATS[0].id);
+renderClock();
+ticker = setInterval(renderClock, 1000);
+</script>
+</body>
+</html>

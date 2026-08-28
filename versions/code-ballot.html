@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSE Freshers CR Elections 2026</title>
+<meta name="description" content="Candidates for the IIT BHU CSE Freshers Class Representative elections. Online voting on 4 September 2026.">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSE Freshers CR Elections 2026">
+<meta property="og:description" content="Meet the candidates for the three Class Representative seats. Online voting, 4 September 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B1220'/%3E%3Cpath d='M7 12l4 4-4 4' stroke='%2358A6FF' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15 22h10' stroke='%233FB950' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  /* syntax tokens double as seat colors */
+  --violet:#8250DF;   /* keyword  -> girls' seat  */
+  --blue:#0969DA;     /* function -> boys' seat   */
+  --amber:#B4690E;    /* constant -> open seat    */
+  --green:#1A7F37;    /* string   -> "valid" ok   */
+  --pink:#CF222E;     /* error / live state       */
+
+  --paper:#F4F7FC;
+  --surface:#FFFFFF;
+  --ink:#0E1526;
+  --muted:#5B6A87;
+  --line:#DCE3EF;
+  --edge:#0E1526;
+  --drop:#0E1526;
+  --tint:rgba(9,105,218,.08);
+
+  /* the terminal blocks stay dark in both themes */
+  --term:#0B1220;
+  --term-2:#070C17;
+  --term-text:#E6EDF7;
+  --term-dim:#93A4C4;
+  --term-line:rgba(230,237,247,.16);
+  --term-violet:#B57BFF;
+  --term-blue:#58A6FF;
+  --term-amber:#F0A868;
+  --term-green:#3FB950;
+  --term-pink:#FF7B72;
+
+  --on-accent:#FFFFFF;
+  --avatar-bg:#101B30;
+
+  --radius:14px;
+  --pop:4px;
+  --step--1:.8125rem;
+  --step-0:1rem;
+  --step-2:1.5rem;
+  --step-3:2rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --violet:#B57BFF;
+    --blue:#58A6FF;
+    --amber:#F0A868;
+    --green:#3FB950;
+    --pink:#FF7B72;
+
+    --paper:#080D18;
+    --surface:#101A2C;
+    --ink:#E6EDF7;
+    --muted:#8B9CBB;
+    --line:#22304A;
+    --edge:#31456B;
+    --drop:#02060D;
+    --tint:rgba(88,166,255,.12);
+
+    --term:#0D1728;
+    --term-2:#070C17;
+
+    --on-accent:#080D18;
+    --avatar-bg:#17233B;
+  }
+}
+:root[data-theme="dark"]{
+  --violet:#B57BFF;
+  --blue:#58A6FF;
+  --amber:#F0A868;
+  --green:#3FB950;
+  --pink:#FF7B72;
+
+  --paper:#080D18;
+  --surface:#101A2C;
+  --ink:#E6EDF7;
+  --muted:#8B9CBB;
+  --line:#22304A;
+  --edge:#31456B;
+  --drop:#02060D;
+  --tint:rgba(88,166,255,.12);
+
+  --term:#0D1728;
+  --term-2:#070C17;
+
+  --on-accent:#080D18;
+  --avatar-bg:#17233B;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:var(--step-0);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+.wrap{width:min(1080px,100% - 2.25rem);margin-inline:auto}
+.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ================= status bar ================= */
+.statusbar{
+  background:var(--term-2);color:var(--term-dim);
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.6875rem;letter-spacing:.02em;
+  padding:.4rem 0;
+  border-bottom:1px solid var(--term-line);
+}
+.statusbar__row{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .9rem}
+.statusbar b{color:var(--term-green);font-weight:500}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--term-green);display:inline-block;margin-right:.4rem;vertical-align:.02em}
+.statusbar .sep{color:var(--term-line)}
+
+/* ================= hero ================= */
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:
+    radial-gradient(65% 55% at 88% 0%,rgba(88,166,255,.18),transparent 62%),
+    radial-gradient(55% 50% at 0% 100%,rgba(181,123,255,.16),transparent 60%),
+    linear-gradient(160deg,var(--term) 0%,var(--term-2) 100%);
+  color:var(--term-text);
+  padding:2.5rem 0 3.25rem;
+  border-bottom:3px solid var(--term-blue);
+}
+.glyphs{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.glyphs span{
+  position:absolute;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-weight:700;opacity:.16;user-select:none;
+}
+.glyphs span:nth-child(1){top:9%;left:6%;font-size:2.5rem;color:var(--term-blue);rotate:-12deg}
+.glyphs span:nth-child(2){top:64%;left:11%;font-size:1.75rem;color:var(--term-violet);rotate:14deg}
+.glyphs span:nth-child(3){top:16%;right:9%;font-size:2rem;color:var(--term-green);rotate:8deg}
+.glyphs span:nth-child(4){top:78%;right:16%;font-size:1.5rem;color:var(--term-amber);rotate:-8deg}
+.glyphs span:nth-child(5){top:42%;right:3%;font-size:2.25rem;color:var(--term-blue);rotate:18deg}
+.glyphs span:nth-child(6){top:5%;left:48%;font-size:1.5rem;color:var(--term-violet);rotate:-6deg}
+.glyphs span:nth-child(7){top:86%;left:39%;font-size:1.75rem;color:var(--term-green);rotate:10deg}
+
+.hero__inner{display:flex;flex-direction:column;gap:2.25rem}
+.eyebrow{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.75rem;color:var(--term-dim);margin:0;
+}
+.eyebrow::before{content:"// ";color:var(--term-green)}
+.hero h1{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-weight:700;font-size:var(--step-3);line-height:1.12;
+  letter-spacing:-.03em;text-wrap:balance;margin:.85rem 0 0;
+}
+.hero h1 .tag{color:var(--term-dim);font-weight:400}
+.hero h1 .a{color:var(--term-blue)}
+.hero h1 .b{color:var(--term-violet)}
+.hero__lede{margin:1rem 0 0;max-width:44ch;color:var(--term-dim)}
+.hero__lede code{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.9em;color:var(--term-green);
+}
+
+/* the date line — deliberately big */
+.stamp{
+  display:flex;align-items:center;flex-wrap:wrap;gap:.5rem .65rem;
+  margin:1.6rem 0 0;padding:.85rem 1.15rem;
+  background:rgba(63,185,80,.10);
+  border:2px solid var(--term-green);
+  border-radius:12px;
+  box-shadow:var(--pop) var(--pop) 0 rgba(2,6,13,.55);
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-weight:700;
+  font-size:1.375rem;letter-spacing:-.02em;
+  color:var(--term-green);
+  width:fit-content;max-width:100%;
+}
+.stamp .prompt{color:var(--term-dim);font-weight:400}
+.stamp .flag{color:var(--term-text);font-weight:500;font-size:.7em}
+.cursor{
+  display:inline-block;width:.55em;height:1.05em;
+  background:var(--term-green);vertical-align:-.15em;
+  animation:blink 1.1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* countdown as a terminal pane */
+.countdown{flex:0 0 auto;width:min(26rem,100%)}
+.pane{
+  border:2px solid var(--term-line);border-radius:12px;
+  background:rgba(7,12,23,.55);
+  overflow:hidden;
+  box-shadow:var(--pop) var(--pop) 0 rgba(2,6,13,.55);
+}
+.pane__bar{
+  display:flex;align-items:center;gap:.4rem;
+  padding:.45rem .7rem;border-bottom:1px solid var(--term-line);
+  background:rgba(230,237,247,.05);
+}
+.pane__bar i{width:9px;height:9px;border-radius:50%;background:var(--term-pink);display:block}
+.pane__bar i:nth-child(2){background:var(--term-amber)}
+.pane__bar i:nth-child(3){background:var(--term-green)}
+.pane__bar span{
+  margin-left:.35rem;font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.6875rem;color:var(--term-dim);
+}
+.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:.85rem .6rem}
+.clock__cell{text-align:center;padding:.15rem .1rem;border-right:1px dashed var(--term-line)}
+.clock__cell:last-child{border-right:0}
+.clock__num{
+  display:block;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-variant-numeric:tabular-nums;font-weight:700;
+  font-size:1.75rem;line-height:1.1;color:var(--term-text);
+}
+.clock__cell:nth-child(1) .clock__num{color:var(--term-violet)}
+.clock__cell:nth-child(2) .clock__num{color:var(--term-blue)}
+.clock__cell:nth-child(3) .clock__num{color:var(--term-amber)}
+.clock__cell:nth-child(4) .clock__num{color:var(--term-green)}
+.clock__unit{
+  display:block;margin-top:.2rem;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.625rem;color:var(--term-dim);
+}
+.clock.is-live{grid-template-columns:1fr}
+.clock.is-live .clock__cell{border-right:0}
+.clock.is-live .clock__num{font-size:1.125rem;color:var(--term-green)}
+
+/* ================= seats ================= */
+.seats{padding:2.25rem 0 0}
+.seats.seat-girls{--seat:var(--violet)}
+.seats.seat-boys{--seat:var(--blue)}
+.seats.seat-open{--seat:var(--amber)}
+
+.tablist{display:grid;grid-template-columns:1fr;gap:.6rem}
+.tab{
+  display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+  width:100%;cursor:pointer;
+  background:var(--surface);color:var(--ink);
+  border:2px solid var(--edge);border-radius:10px;
+  padding:.65rem 1rem;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-weight:500;letter-spacing:-.02em;
+  box-shadow:var(--pop) var(--pop) 0 var(--drop);
+  transition:transform .12s ease,box-shadow .12s ease,background .12s ease,color .12s ease;
+}
+.tab:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--drop)}
+.tab:active{transform:translate(var(--pop),var(--pop));box-shadow:0 0 0 var(--drop)}
+.tab__count{
+  font-variant-numeric:tabular-nums;font-size:.8125rem;
+  color:var(--muted);
+}
+.tab[data-seat="girls"][aria-selected="true"]{background:var(--violet)}
+.tab[data-seat="boys"][aria-selected="true"]{background:var(--blue)}
+.tab[data-seat="open"][aria-selected="true"]{background:var(--amber)}
+.tab[aria-selected="true"]{
+  color:var(--on-accent);
+  transform:translate(2px,2px);box-shadow:2px 2px 0 var(--drop);
+}
+.tab[aria-selected="true"] .tab__count{color:var(--on-accent);opacity:.8}
+
+.seat-head{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.35rem 1rem;margin:2rem 0 1.15rem;
+  padding-bottom:.75rem;border-bottom:2px dashed var(--line);
+}
+.seat-head h2{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-weight:700;font-size:var(--step-2);letter-spacing:-.03em;margin:0;
+  display:flex;align-items:center;gap:.55rem;
+}
+.seat-head h2::before{
+  content:"";width:.75rem;height:.75rem;border-radius:3px;
+  background:var(--seat);flex:0 0 auto;
+}
+.seat-head p{
+  margin:0;font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.75rem;color:var(--muted);
+}
+.seat-head p::before{content:"// ";color:var(--seat)}
+
+/* ================= candidate grid ================= */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
+  gap:1.4rem 1rem;padding-bottom:3.5rem;list-style:none;margin:0;
+}
+.card{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;gap:.85rem;
+  background:var(--surface);
+  border:2px solid var(--edge);border-radius:var(--radius);
+  padding:1.15rem .65rem 1.05rem;
+  box-shadow:var(--pop) var(--pop) 0 var(--drop);
+  transition:transform .16s cubic-bezier(.3,1.35,.5,1),box-shadow .16s ease;
+}
+.card:nth-child(odd){rotate:-.8deg}
+.card:nth-child(even){rotate:.8deg}
+.card:hover{rotate:0deg;transform:translate(-2px,-4px);box-shadow:8px 10px 0 var(--drop)}
+.card__photo{
+  width:98px;height:98px;border-radius:50%;object-fit:cover;
+  background:var(--tint);
+  border:2px solid var(--edge);
+  box-shadow:0 0 0 4px var(--seat);
+  transition:box-shadow .16s ease;
+}
+.card:hover .card__photo{box-shadow:0 0 0 7px var(--seat)}
+.card__name{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-weight:500;font-size:.9375rem;line-height:1.3;letter-spacing:-.03em;
+  text-align:center;text-wrap:balance;margin:0;
+}
+.empty{
+  grid-column:1/-1;margin:0;padding:2rem 1rem;text-align:center;color:var(--muted);
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--step--1);
+  border:2px dashed var(--line);border-radius:var(--radius);
+}
+
+/* ================= footer ================= */
+.foot{border-top:3px solid var(--edge);background:var(--surface);padding:2.25rem 0 2.75rem}
+.foot__grid{display:grid;grid-template-columns:1fr;gap:1.4rem}
+.foot dt{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.6875rem;color:var(--muted);margin:0 0 .3rem;
+}
+.foot dt::before{content:"# ";color:var(--blue)}
+.foot dd{
+  margin:0;font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-weight:700;font-size:1.0625rem;letter-spacing:-.02em;
+}
+.foot dd small{
+  display:block;margin-top:.2rem;
+  font-family:"IBM Plex Sans",sans-serif;font-weight:400;
+  color:var(--muted);font-size:var(--step--1);line-height:1.45;
+}
+.badge{
+  display:inline-block;padding:.1rem .6rem;border-radius:6px;
+  background:var(--green);color:var(--on-accent);
+  border:2px solid var(--edge);font-weight:700;font-size:.9375rem;
+}
+.creed{
+  display:flex;align-items:center;justify-content:center;gap:.75rem;
+  margin:2rem 0 0;padding:.85rem 1rem;
+  border:2px dashed var(--line);border-radius:10px;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:.75rem;color:var(--muted);text-align:center;
+}
+.creed b{color:var(--green);font-weight:700}
+.foot__note{
+  margin:1.5rem 0 0;font-size:var(--step--1);color:var(--muted);max-width:70ch;
+}
+
+/* ================= breakpoints ================= */
+@media (min-width:640px){
+  :root{--step-3:2.75rem;--pop:5px}
+  .hero{padding:3.5rem 0 4rem}
+  .stamp{font-size:1.75rem;padding:1rem 1.4rem}
+  .tablist{grid-template-columns:repeat(3,1fr)}
+  .tab{justify-content:center;gap:.5rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(174px,1fr));gap:1.8rem 1.2rem}
+  .card__photo{width:116px;height:116px}
+  .card__name{font-size:1rem}
+  .foot__grid{grid-template-columns:repeat(3,1fr);gap:2rem}
+}
+@media (min-width:960px){
+  :root{--step-3:3.25rem}
+  .hero__inner{flex-direction:row;justify-content:space-between;align-items:flex-end;gap:3rem}
+  .stamp{font-size:2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+  .card{rotate:none !important}
+  .card:hover,.tab:hover{transform:none}
+  .cursor{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="statusbar">
+  <div class="wrap statusbar__row">
+    <span><span class="dot"></span><b>main</b></span>
+    <span class="sep">|</span>
+    <span>3 seats</span>
+    <span class="sep">|</span>
+    <span>11 candidates</span>
+    <span class="sep">|</span>
+    <span>UTF-8</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="glyphs" aria-hidden="true">
+    <span>{}</span><span>;</span><span>&lt;/&gt;</span><span>01</span><span>=&gt;</span><span>//</span><span>[ ]</span>
+  </div>
+  <div class="wrap hero__inner">
+    <div>
+      <p class="eyebrow">IIT (BHU) Varanasi &middot; Computer Science &amp; Engineering</p>
+      <h1>
+        <span class="tag">&lt;</span>CSE Freshers<br>
+        <span class="a">CR&nbsp;Elections</span> <span class="b">2026</span><span class="tag"> /&gt;</span>
+      </h1>
+      <p class="hero__lede">Eleven of your batchmates are running for three seats. Read the ballot, then <code>commit</code> your vote.</p>
+      <p class="stamp">
+        <span class="prompt">$</span> vote --on 2026-09-04
+        <span class="cursor" aria-hidden="true"></span>
+      </p>
+    </div>
+    <div class="countdown">
+      <div class="pane">
+        <div class="pane__bar"><i></i><i></i><i></i><span>countdown.js</span></div>
+        <div class="clock" id="clock" role="timer" aria-live="off" aria-labelledby="clock-label"></div>
+      </div>
+      <p class="eyebrow" id="clock-label" style="margin:.7rem 0 0">time until polls open</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap seats" id="seats">
+  <div class="tablist" role="tablist" aria-label="Choose a seat"></div>
+
+  <div class="seat-head">
+    <h2 id="seat-title"></h2>
+    <p id="seat-count"></p>
+  </div>
+
+  <ul class="grid" id="grid" role="tabpanel" aria-labelledby="seat-title"></ul>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <dl class="foot__grid">
+      <div><dt>voting_date</dt><dd id="foot-date"></dd></div>
+      <div><dt>mode</dt><dd id="foot-mode"></dd></div>
+      <div><dt>timing</dt><dd id="foot-timing"></dd></div>
+    </dl>
+    <p class="creed"><b>1 person</b> &nbsp;==&nbsp; <b>1 vote</b> &nbsp;&nbsp;//&nbsp; no duplicates, no overrides</p>
+    <p class="foot__note">Unofficial candidate listing maintained by the CSE freshers&rsquo; election volunteers. This page displays candidates only &mdash; it does not collect votes. Details subject to change until the returning officer&rsquo;s final notice.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT EVERYTHING BELOW THIS LINE
+   ============================================================ */
+
+// Countdown target — when voting opens (IST). YYYY-MM-DDTHH:MM:SS+05:30
+const VOTING_OPENS = "2026-09-04T09:00:00+05:30";
+
+// Footer details.
+const LOGISTICS = {
+  date:       "2026-09-04",
+  dateNote:   "Friday · odd semester, 2026–27",
+  mode:       "Online",
+  modeNote:   "Voting link shared on the class group",
+  timing:     "09:00 – 17:00 IST",
+  timingNote: "Timings to be confirmed"
+};
+
+// The three seats, in tab order.
+const SEATS = [
+  { id: "girls", label: "seat.girls", title: "Girls' Representative", note: "" },
+  { id: "boys",  label: "seat.boys",  title: "Boys' Representative",  note: "" },
+  { id: "open",  label: "seat.open",  title: "Open / Neutral Seat",   note: "everyone contests this one" }
+];
+
+// Candidates. `seat` is "girls" or "boys".
+// `photo`: a path or URL, e.g. "photos/soma-srinidhi.jpg". Leave "" for an initials avatar.
+const CANDIDATES = [
+  { name: "Soma Srinidhi",   seat: "girls", photo: "" },
+  { name: "Ashika Agrawal",  seat: "girls", photo: "" },
+
+  { name: "Sumit Kasaudhan", seat: "boys",  photo: "" },
+  { name: "Pranab Kumar",    seat: "boys",  photo: "" },
+  { name: "Rajat Dubey",     seat: "boys",  photo: "" },
+  { name: "Aditya Narayan",  seat: "boys",  photo: "" },
+  { name: "Harsh Modi",      seat: "boys",  photo: "" },
+  { name: "Maddi Saketh",    seat: "boys",  photo: "" },
+  { name: "Aadvik Nautiyal", seat: "boys",  photo: "" },
+  { name: "Sahil Gupta",     seat: "boys",  photo: "" },
+  { name: "Gopal Saxena",    seat: "boys",  photo: "" }
+];
+
+// Who appears under the Open seat.
+//   "all"                            -> every candidate above (2 girls + 9 boys)
+//   ["Harsh Modi", "Soma Srinidhi"]  -> only these names
+const OPEN_SEAT = "all";
+
+/* ============================================================
+   NO EDITS NEEDED BELOW
+   ============================================================ */
+
+const $ = (sel) => document.querySelector(sel);
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[ch]));
+}
+
+/* --- placeholder avatar: initials, tinted to the current seat --- */
+function initials(name) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+function cssVar(name, fallback) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+function avatar(name, seatColor) {
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">' +
+      '<circle cx="60" cy="60" r="60" fill="' + cssVar("--avatar-bg", "#101B30") + '"/>' +
+      '<text x="60" y="61" fill="' + seatColor + '" font-family="JetBrains Mono, ui-monospace, Menlo, monospace"' +
+      ' font-size="40" font-weight="700" letter-spacing="-1"' +
+      ' text-anchor="middle" dominant-baseline="central">' + escapeHtml(initials(name)) + '</text>' +
+    '</svg>';
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+/* --- countdown --- */
+const clockEl = $("#clock");
+const clockLabel = $("#clock-label");
+const target = new Date(VOTING_OPENS).getTime();
+let ticker;
+
+const pad = (n) => String(n).padStart(2, "0");
+
+function renderClock() {
+  const diff = target - Date.now();
+  if (diff <= 0) {
+    clockEl.classList.add("is-live");
+    clockLabel.textContent = "status: polls are open";
+    clockEl.innerHTML =
+      '<div class="clock__cell"><span class="clock__num">VOTING IS OPEN</span>' +
+      '<span class="clock__unit">check the class group for the link</span></div>';
+    clearInterval(ticker);
+    return;
+  }
+  const s = Math.floor(diff / 1000);
+  const cells = [
+    [Math.floor(s / 86400),     "days"],
+    [Math.floor(s / 3600) % 24, "hrs"],
+    [Math.floor(s / 60) % 60,   "min"],
+    [s % 60,                    "sec"]
+  ];
+  clockEl.innerHTML = cells.map(([v, u]) =>
+    '<div class="clock__cell"><span class="clock__num">' + pad(v) + '</span>' +
+    '<span class="clock__unit">' + u + '</span></div>'
+  ).join("");
+}
+
+/* --- seats + grid --- */
+const seatsEl = $("#seats");
+const tablist = $(".tablist");
+const grid = $("#grid");
+const seatTitle = $("#seat-title");
+const seatCount = $("#seat-count");
+
+function bySeat(id) {
+  if (id === "open") {
+    if (OPEN_SEAT === "all") return CANDIDATES.slice();
+    return CANDIDATES.filter((c) => OPEN_SEAT.includes(c.name));
+  }
+  return CANDIDATES.filter((c) => c.seat === id);
+}
+
+function renderTabs() {
+  tablist.innerHTML = SEATS.map((s, i) =>
+    '<button class="tab" role="tab" type="button" id="tab-' + s.id + '"' +
+    ' aria-selected="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '"' +
+    ' data-seat="' + s.id + '">' +
+    '<span>' + escapeHtml(s.label) + '</span>' +
+    '<span class="tab__count">' + bySeat(s.id).length + '</span>' +
+    '</button>'
+  ).join("");
+}
+
+function selectSeat(id) {
+  const seat = SEATS.find((s) => s.id === id) || SEATS[0];
+  const list = bySeat(seat.id);
+
+  SEATS.forEach((s) => seatsEl.classList.toggle("seat-" + s.id, s.id === seat.id));
+
+  tablist.querySelectorAll(".tab").forEach((btn) => {
+    const on = btn.dataset.seat === seat.id;
+    btn.setAttribute("aria-selected", String(on));
+    btn.tabIndex = on ? 0 : -1;
+  });
+
+  seatTitle.textContent = seat.title;
+  const count = list.length + (list.length === 1 ? " candidate" : " candidates");
+  seatCount.textContent = seat.note ? count + " · " + seat.note : count;
+  grid.setAttribute("aria-labelledby", "tab-" + seat.id);
+
+  const seatColor = getComputedStyle(seatsEl).getPropertyValue("--seat").trim() || "#8250DF";
+
+  grid.innerHTML = list.length
+    ? list.map((c) => {
+        const src = c.photo ? escapeHtml(c.photo) : avatar(c.name, seatColor);
+        return '<li class="card">' +
+          '<img class="card__photo" src="' + src + '" alt="' + escapeHtml(c.name) + '"' +
+          ' width="116" height="116" loading="lazy" decoding="async">' +
+          '<p class="card__name">' + escapeHtml(c.name) + '</p>' +
+        '</li>';
+      }).join("")
+    : '<li class="empty">// nobody here yet</li>';
+}
+
+tablist.addEventListener("click", (e) => {
+  const btn = e.target.closest(".tab");
+  if (btn) selectSeat(btn.dataset.seat);
+});
+tablist.addEventListener("keydown", (e) => {
+  const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 1, ArrowUp: -1 };
+  if (!(e.key in step)) return;
+  e.preventDefault();
+  const i = SEATS.findIndex((s) => s.id === document.activeElement.dataset.seat);
+  const next = SEATS[(i + step[e.key] + SEATS.length) % SEATS.length];
+  selectSeat(next.id);
+  tablist.querySelector('[data-seat="' + next.id + '"]').focus();
+});
+
+/* redraw initials avatars if the viewer flips their system theme */
+const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+const onSchemeChange = () => {
+  const active = tablist.querySelector('[aria-selected="true"]');
+  selectSeat(active ? active.dataset.seat : SEATS[0].id);
+};
+if (scheme.addEventListener) scheme.addEventListener("change", onSchemeChange);
+
+/* --- boot --- */
+const field = (value, note) => escapeHtml(value) + "<small>" + escapeHtml(note) + "</small>";
+$("#foot-date").innerHTML = field(LOGISTICS.date, LOGISTICS.dateNote);
+$("#foot-mode").innerHTML = '<span class="badge">' + escapeHtml(LOGISTICS.mode) + "</span><small>" + escapeHtml(LOGISTICS.modeNote) + "</small>";
+$("#foot-timing").innerHTML = field(LOGISTICS.timing, LOGISTICS.timingNote);
+
+renderTabs();
+selectSeat(SEATS[0].id);
+renderClock();
+ticker = setInterval(renderClock, 1000);
+</script>
+</body>
+</html>

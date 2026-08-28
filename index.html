@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CSE Freshers CR Elections 2026</title>
+<meta name="description" content="Candidates for the IIT BHU CSE Freshers Class Representative elections. Online voting on 4 September 2026.">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSE Freshers CR Elections 2026">
+<meta property="og:description" content="Candidates for the three Class Representative seats. Online voting, 4 September 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B0F16'/%3E%3Cpath d='M8 12l4 4-4 4' stroke='%232F81F7' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16 21h9' stroke='%232F81F7' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* light is the default; the toggle stamps data-theme="dark" */
+:root,:root[data-theme="light"]{
+  --bg:#FFFFFF;
+  --surface:#FFFFFF;
+  --ink:#0F1621;
+  --muted:#6D778A;
+  --faint:#98A1B2;
+  --line:#E6E9F0;
+  --hover:#F4F6FA;
+
+  --accent:#2F6BEB;
+  --violet:#7C3AED;   /* girls' seat */
+  --blue:#2F6BEB;     /* boys' seat  */
+  --amber:#B45309;    /* open seat   */
+
+  --step--1:.75rem;
+  --step-0:.9375rem;
+  --step-1:1.125rem;
+  --step-3:1.875rem;
+}
+:root[data-theme="dark"]{
+  --bg:#0B0F16;
+  --surface:#0F141D;
+  --ink:#E6EAF2;
+  --muted:#8B94A6;
+  --faint:#6B7385;
+  --line:#1D2430;
+  --hover:#141B26;
+
+  --accent:#4E8DFF;
+  --violet:#A78BFA;
+  --blue:#4E8DFF;
+  --amber:#E0A458;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:var(--step-0);
+  line-height:1.65;
+  letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;
+  overflow-wrap:break-word;
+  overflow-x:hidden;
+  transition:background .2s ease,color .2s ease;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.wrap{
+  width:min(880px,100% - 2.5rem);margin-inline:auto;
+  padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);
+}
+.comment{color:var(--faint)}
+
+/* ---------------- header ---------------- */
+.head{padding:3.5rem 0 0}
+.topline{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem 1rem}
+.topline .comment{margin:0;font-size:var(--step--1)}
+.themetoggle{
+  display:inline-flex;align-items:center;gap:.45rem;flex:0 0 auto;
+  min-height:34px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  background:none;border:1px solid var(--line);border-radius:6px;
+  padding:.3rem .6rem;cursor:pointer;
+  font-size:var(--step--1);color:var(--muted);
+  transition:background .15s ease,color .15s ease,border-color .15s ease;
+}
+@media (hover:hover){.themetoggle:hover{background:var(--hover);color:var(--ink)}}
+.themetoggle svg{width:13px;height:13px}
+.head h1{
+  font-weight:700;font-size:var(--step-3);line-height:1.25;
+  letter-spacing:-.045em;margin:1.1rem 0 0;max-width:20ch;
+}
+.head p.lede{margin:1rem 0 0;max-width:56ch;color:var(--muted);font-size:var(--step-0)}
+
+/* the date line */
+.stamp{
+  margin:2.25rem 0 0;
+  font-size:clamp(1.125rem,5vw,1.75rem);font-weight:700;letter-spacing:-.045em;
+  color:var(--ink);overflow-wrap:anywhere;
+}
+.stamp .prompt{color:var(--faint);font-weight:400}
+.stamp .val{color:var(--accent)}
+
+/* countdown */
+.countdown{margin:2rem 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.clock{display:grid;grid-template-columns:repeat(4,1fr)}
+.clock__cell{padding:.9rem .2rem;text-align:left;border-right:1px solid var(--line);min-width:0}
+.clock__cell:last-child{border-right:0}
+.clock__num{
+  display:block;font-weight:700;font-size:clamp(1.15rem,6vw,1.5rem);line-height:1.15;
+  letter-spacing:-.05em;font-variant-numeric:tabular-nums;
+}
+.clock__unit{display:block;margin-top:.2rem;font-size:var(--step--1);color:var(--faint)}
+.clock.is-live{grid-template-columns:1fr}
+.clock.is-live .clock__cell{border-right:0}
+.clock.is-live .clock__num{font-size:1.125rem;color:var(--accent)}
+
+/* ---------------- seats ---------------- */
+.seats{padding:2.75rem 0 0}
+.seats.seat-girls{--seat:var(--violet)}
+.seats.seat-boys{--seat:var(--blue)}
+.seats.seat-open{--seat:var(--amber)}
+
+.tablist{display:flex;flex-wrap:wrap;gap:0 1.6rem;border-bottom:1px solid var(--line)}
+.tab{
+  position:relative;background:none;border:0;cursor:pointer;
+  padding:.7rem 0 .95rem;min-height:44px;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  font-size:var(--step-0);font-weight:500;color:var(--muted);
+  transition:color .15s ease;
+}
+@media (hover:hover){.tab:hover{color:var(--ink)}}
+.tab::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:var(--ink);opacity:0;transition:opacity .15s ease;
+}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab[aria-selected="true"]::after{opacity:1}
+.tab__count{color:var(--faint);margin-left:.35rem;font-weight:400}
+
+.seat-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .9rem;margin:2rem 0 1.5rem}
+.seat-head h2{
+  font-weight:700;font-size:var(--step-1);letter-spacing:-.04em;margin:0;
+  display:flex;align-items:center;gap:.55rem;
+}
+.seat-head h2::before{content:"";width:.5rem;height:.5rem;background:var(--seat);flex:0 0 auto}
+.seat-head p{margin:0;font-size:var(--step--1);color:var(--faint)}
+
+/* ---------------- candidates ---------------- */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));
+  gap:1.75rem 1rem;padding-bottom:4rem;list-style:none;margin:0;
+}
+.card{display:flex;flex-direction:column;align-items:center;gap:.85rem}
+.card__photo{
+  width:84px;height:84px;border-radius:50%;object-fit:cover;
+  background:var(--surface);
+  box-shadow:0 0 0 1px var(--line);
+  transition:box-shadow .2s ease;
+}
+@media (hover:hover){.card:hover .card__photo{box-shadow:0 0 0 1px var(--seat)}}
+.card__name{
+  margin:0;font-weight:500;font-size:var(--step--1);line-height:1.4;
+  letter-spacing:-.02em;text-align:center;text-wrap:balance;color:var(--ink);
+}
+.empty{grid-column:1/-1;margin:0;color:var(--faint);font-size:var(--step--1)}
+
+/* ---------------- footer ---------------- */
+.foot{border-top:1px solid var(--line);padding:2.25rem 0 calc(3rem + env(safe-area-inset-bottom))}
+.foot__grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin:0}
+.foot dt{margin:0;font-size:var(--step--1);color:var(--faint)}
+.foot dd{margin:.2rem 0 0;font-weight:500;font-size:var(--step-0)}
+.foot dd small{display:block;margin-top:.15rem;font-weight:400;font-size:var(--step--1);color:var(--faint)}
+.foot__note{margin:2rem 0 0;font-size:var(--step--1);color:var(--faint);max-width:70ch}
+
+@media (min-width:640px){
+  :root{--step-3:2.375rem}
+  .head{padding-top:5rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:2.25rem 1.5rem}
+  .card__photo{width:96px;height:96px}
+  .foot__grid{grid-template-columns:repeat(3,1fr);gap:2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap head">
+  <div class="topline">
+    <p class="comment">// IIT (BHU) Varanasi · Computer Science &amp; Engineering</p>
+    <button class="themetoggle" type="button" id="theme" aria-pressed="false">
+      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+      <span id="theme-label">dark</span>
+    </button>
+  </div>
+
+  <h1>CSE Freshers CR Elections 2026</h1>
+  <p class="lede">Eleven candidates. Three Class Representative seats.</p>
+
+  <p class="stamp"><span class="prompt">$</span> vote --on <span class="val" id="stamp-date">2026-09-04</span></p>
+
+  <div class="countdown">
+    <div class="clock" id="clock" role="timer" aria-live="off" aria-label="Time until voting opens"></div>
+  </div>
+</header>
+
+<main class="wrap seats" id="seats">
+  <div class="tablist" role="tablist" aria-label="Choose a seat"></div>
+
+  <div class="seat-head">
+    <h2 id="seat-title"></h2>
+    <p id="seat-count"></p>
+  </div>
+
+  <ul class="grid" id="grid" role="tabpanel" aria-labelledby="seat-title"></ul>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <dl class="foot__grid">
+      <div><dt>date</dt><dd id="foot-date"></dd></div>
+      <div><dt>mode</dt><dd id="foot-mode"></dd></div>
+      <div><dt>timing</dt><dd id="foot-timing"></dd></div>
+    </dl>
+    <p class="foot__note">// Unofficial listing kept by the CSE freshers&rsquo; election volunteers. Candidates only &mdash; this page does not collect votes. Details may change until the returning officer&rsquo;s final notice.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT EVERYTHING BELOW THIS LINE
+   ============================================================ */
+
+// Countdown target — when voting opens (IST). YYYY-MM-DDTHH:MM:SS+05:30
+const VOTING_OPENS = "2026-09-04T09:00:00+05:30";
+
+// Header + footer details.
+const LOGISTICS = {
+  stamp:      "2026-09-04",
+  date:       "Friday, 4 September 2026",
+  dateNote:   "odd semester, 2026–27",
+  mode:       "Online",
+  modeNote:   "link shared on the class group",
+  timing:     "09:00 – 17:00 IST",
+  timingNote: "to be confirmed"
+};
+
+// The three seats, in tab order.
+const SEATS = [
+  { id: "open",  label: "open",  title: "Open / Neutral Seat",   note: "contested by everyone" },
+  { id: "girls", label: "girls", title: "Girls' Representative", note: "" },
+  { id: "boys",  label: "boys",  title: "Boys' Representative",  note: "" }
+];
+
+// Candidates. `seat` is "girls" or "boys".
+//
+// PHOTOS: just drop a file in photos/ — no edit needed here. The page tries,
+// in order:  photos/first-last.jpg / .jpeg / .png / .webp
+//            photos/first_last.jpg / .jpeg / .png / .webp
+//            photos/first.jpg / .jpeg / .png / .webp
+// and falls back to an initials circle if none of them load.
+// Set `photo` only to override with some other filename or a URL.
+const CANDIDATES = [
+  { name: "Soma Srinidhi",   seat: "girls", photo: "" },
+  { name: "Ashika Agrawal",  seat: "girls", photo: "" },
+
+  { name: "Sumit Kasaudhan", seat: "boys",  photo: "" },
+  { name: "Pranab Kumar",    seat: "boys",  photo: "" },
+  { name: "Rajat Dubey",     seat: "boys",  photo: "" },
+  { name: "Aditya Narayan",  seat: "boys",  photo: "" },
+  { name: "Harsh Modi",      seat: "boys",  photo: "" },
+  { name: "Maddi Saketh",    seat: "boys",  photo: "" },
+  { name: "Aadvik Nautiyal", seat: "boys",  photo: "" },
+  { name: "Sahil Gupta",     seat: "boys",  photo: "photos/sahil.png.jpeg" },
+  { name: "Gopal Saxena",    seat: "boys",  photo: "" }
+];
+
+// Who appears under the Open seat.
+//   "all"                            -> every candidate above (2 girls + 9 boys)
+//   ["Harsh Modi", "Soma Srinidhi"]  -> only these names
+const OPEN_SEAT = "all";
+
+/* ============================================================
+   NO EDITS NEEDED BELOW
+   ============================================================ */
+
+const $ = (sel) => document.querySelector(sel);
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[ch]));
+}
+
+/* --- theme --- */
+const root = document.documentElement;
+const themeBtn = $("#theme");
+const themeIcon = $("#theme-icon");
+const themeLabel = $("#theme-label");
+
+const SUN = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>';
+const MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>';
+
+function paintTheme(mode) {
+  root.setAttribute("data-theme", mode);
+  const goingDark = mode === "light";
+  themeIcon.innerHTML = goingDark ? MOON : SUN;
+  themeLabel.textContent = goingDark ? "dark" : "light";
+  themeBtn.setAttribute("aria-pressed", String(mode === "dark"));
+  themeBtn.setAttribute("aria-label", goingDark ? "Switch to dark theme" : "Switch to light theme");
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", mode === "dark" ? "#0B0F16" : "#FFFFFF");
+}
+
+let theme = "light";
+try { theme = localStorage.getItem("cr-theme") || "light"; } catch (e) { /* private mode */ }
+paintTheme(theme === "dark" ? "dark" : "light");
+
+themeBtn.addEventListener("click", () => {
+  theme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  paintTheme(theme);
+  try { localStorage.setItem("cr-theme", theme); } catch (e) { /* ignore */ }
+  redrawAvatars();
+});
+
+/* --- photos: try a few filenames, then fall back to initials --- */
+const EXTS = ["jpg", "jpeg", "png", "webp"];
+
+function slug(name) {
+  return name.trim().toLowerCase()
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-");
+}
+function candidatePaths(c) {
+  if (c.photo) return [c.photo];
+  const full = slug(c.name);
+  const under = full.replace(/-/g, "_");
+  const first = full.split("-")[0];
+  const stems = [...new Set([full, under, first])];
+  const out = [];
+  stems.forEach((s) => EXTS.forEach((e) => out.push("photos/" + s + "." + e)));
+  return out;
+}
+
+function initials(name) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+function cssVar(name, fallback) {
+  const v = getComputedStyle(root).getPropertyValue(name).trim();
+  return v || fallback;
+}
+function avatar(name) {
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">' +
+      '<circle cx="60" cy="60" r="60" fill="' + cssVar("--surface", "#FFFFFF") + '"/>' +
+      '<text x="60" y="62" fill="' + cssVar("--faint", "#98A1B2") + '"' +
+      ' font-family="JetBrains Mono, ui-monospace, Menlo, monospace"' +
+      ' font-size="34" font-weight="500" letter-spacing="-1"' +
+      ' text-anchor="middle" dominant-baseline="central">' + escapeHtml(initials(name)) + '</text>' +
+    '</svg>';
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+/* walk the candidate paths on each 404, then settle on the initials circle */
+function wirePhoto(img, c) {
+  const paths = candidatePaths(c);
+  let i = 0;
+  img.dataset.fallback = "1";
+  img.addEventListener("error", () => {
+    i += 1;
+    if (i < paths.length) img.src = paths[i];
+    else { img.dataset.fallback = "avatar"; img.src = avatar(c.name); }
+  });
+  img.src = paths[0];
+}
+function redrawAvatars() {
+  grid.querySelectorAll('img[data-fallback="avatar"]').forEach((img) => {
+    img.src = avatar(img.alt);
+  });
+}
+
+/* --- countdown --- */
+const clockEl = $("#clock");
+const target = new Date(VOTING_OPENS).getTime();
+let ticker;
+const pad = (n) => String(n).padStart(2, "0");
+
+function renderClock() {
+  const diff = target - Date.now();
+  if (diff <= 0) {
+    clockEl.classList.add("is-live");
+    clockEl.innerHTML =
+      '<div class="clock__cell"><span class="clock__num">voting is open</span>' +
+      '<span class="clock__unit">link on the class group</span></div>';
+    clearInterval(ticker);
+    return;
+  }
+  const s = Math.floor(diff / 1000);
+  const cells = [
+    [Math.floor(s / 86400),     "days"],
+    [Math.floor(s / 3600) % 24, "hrs"],
+    [Math.floor(s / 60) % 60,   "min"],
+    [s % 60,                    "sec"]
+  ];
+  clockEl.innerHTML = cells.map(([v, u]) =>
+    '<div class="clock__cell"><span class="clock__num">' + pad(v) + '</span>' +
+    '<span class="clock__unit">' + u + '</span></div>'
+  ).join("");
+}
+
+/* --- seats + grid --- */
+const seatsEl = $("#seats");
+const tablist = $(".tablist");
+const grid = $("#grid");
+const seatTitle = $("#seat-title");
+const seatCount = $("#seat-count");
+
+function bySeat(id) {
+  if (id === "open") {
+    if (OPEN_SEAT === "all") return CANDIDATES.slice();
+    return CANDIDATES.filter((c) => OPEN_SEAT.includes(c.name));
+  }
+  return CANDIDATES.filter((c) => c.seat === id);
+}
+
+function renderTabs() {
+  tablist.innerHTML = SEATS.map((s, i) =>
+    '<button class="tab" role="tab" type="button" id="tab-' + s.id + '"' +
+    ' aria-selected="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '"' +
+    ' data-seat="' + s.id + '">' + escapeHtml(s.label) +
+    '<span class="tab__count">' + bySeat(s.id).length + '</span></button>'
+  ).join("");
+}
+
+function selectSeat(id) {
+  const seat = SEATS.find((s) => s.id === id) || SEATS[0];
+  const list = bySeat(seat.id);
+
+  SEATS.forEach((s) => seatsEl.classList.toggle("seat-" + s.id, s.id === seat.id));
+
+  tablist.querySelectorAll(".tab").forEach((btn) => {
+    const on = btn.dataset.seat === seat.id;
+    btn.setAttribute("aria-selected", String(on));
+    btn.tabIndex = on ? 0 : -1;
+  });
+
+  seatTitle.textContent = seat.title;
+  const count = list.length + (list.length === 1 ? " candidate" : " candidates");
+  seatCount.textContent = seat.note ? "// " + count + " · " + seat.note : "// " + count;
+  grid.setAttribute("aria-labelledby", "tab-" + seat.id);
+
+  grid.innerHTML = list.length
+    ? list.map((c) =>
+        '<li class="card">' +
+          '<img class="card__photo" alt="' + escapeHtml(c.name) + '"' +
+          ' width="96" height="96" loading="lazy" decoding="async">' +
+          '<p class="card__name">' + escapeHtml(c.name) + '</p>' +
+        '</li>'
+      ).join("")
+    : '<li class="empty">// nobody listed yet</li>';
+
+  grid.querySelectorAll(".card__photo").forEach((img, i) => wirePhoto(img, list[i]));
+}
+
+tablist.addEventListener("click", (e) => {
+  const btn = e.target.closest(".tab");
+  if (btn) selectSeat(btn.dataset.seat);
+});
+tablist.addEventListener("keydown", (e) => {
+  const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 1, ArrowUp: -1 };
+  if (!(e.key in step)) return;
+  e.preventDefault();
+  const i = SEATS.findIndex((s) => s.id === document.activeElement.dataset.seat);
+  const next = SEATS[(i + step[e.key] + SEATS.length) % SEATS.length];
+  selectSeat(next.id);
+  tablist.querySelector('[data-seat="' + next.id + '"]').focus();
+});
+
+/* --- boot --- */
+const field = (value, note) => escapeHtml(value) + "<small>" + escapeHtml(note) + "</small>";
+$("#stamp-date").textContent = LOGISTICS.stamp;
+$("#foot-date").innerHTML = field(LOGISTICS.date, LOGISTICS.dateNote);
+$("#foot-mode").innerHTML = field(LOGISTICS.mode, LOGISTICS.modeNote);
+$("#foot-timing").innerHTML = field(LOGISTICS.timing, LOGISTICS.timingNote);
+
+renderTabs();
+selectSeat(SEATS[0].id);
+renderClock();
+ticker = setInterval(renderClock, 1000);
+</script>
+</body>
+</html>

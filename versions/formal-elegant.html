@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSE Freshers CR Elections 2026</title>
+<meta name="description" content="Candidates for the IIT BHU CSE Freshers Class Representative elections. Online voting on 4 September 2026.">
+<meta name="theme-color" content="#14202E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSE Freshers CR Elections 2026">
+<meta property="og:description" content="Candidates for the three Class Representative seats. Online voting, 4 September 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314202E'/%3E%3Crect x='5' y='5' width='22' height='22' fill='none' stroke='%23C2A15C' stroke-width='1'/%3E%3Cpath d='M11 16.5l3.5 3.5L21 12' fill='none' stroke='%23C2A15C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap">
+<style>
+:root{
+  --ink:#14202E;
+  --ink-soft:#3C4757;
+  --muted:#78808F;
+  --ground:#F5F5F2;
+  --surface:#FFFFFF;
+  --line:#E2E1DA;
+  --hair:#CFCEC4;
+  --brass:#9C7C38;
+  --brass-lt:#C2A15C;
+  --brass-tint:rgba(156,124,56,.08);
+
+  --hero-ink:#F4F2EC;
+  --hero-dim:rgba(244,242,236,.66);
+  --hero-line:rgba(194,161,92,.42);
+
+  --shadow:0 1px 2px rgba(20,32,46,.04),0 12px 28px -18px rgba(20,32,46,.28);
+  --shadow-lift:0 2px 4px rgba(20,32,46,.06),0 22px 44px -20px rgba(20,32,46,.42);
+
+  --step--1:.8125rem;
+  --step-0:1.0625rem;
+  --step-2:1.75rem;
+  --step-3:2.5rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#ECEFF3;
+    --ink-soft:#C4CBD6;
+    --muted:#8D97A6;
+    --ground:#0D131B;
+    --surface:#151D28;
+    --line:#25303E;
+    --hair:#33404F;
+    --brass:#CBA560;
+    --brass-lt:#E0C289;
+    --brass-tint:rgba(203,165,96,.10);
+
+    --hero-ink:#F2F0EA;
+    --hero-dim:rgba(242,240,234,.62);
+    --hero-line:rgba(203,165,96,.38);
+
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 12px 28px -18px rgba(0,0,0,.75);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.5),0 22px 44px -20px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#ECEFF3;
+  --ink-soft:#C4CBD6;
+  --muted:#8D97A6;
+  --ground:#0D131B;
+  --surface:#151D28;
+  --line:#25303E;
+  --hair:#33404F;
+  --brass:#CBA560;
+  --brass-lt:#E0C289;
+  --brass-tint:rgba(203,165,96,.10);
+
+  --hero-ink:#F2F0EA;
+  --hero-dim:rgba(242,240,234,.62);
+  --hero-line:rgba(203,165,96,.38);
+
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 12px 28px -18px rgba(0,0,0,.75);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.5),0 22px 44px -20px rgba(0,0,0,.9);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Source Sans 3",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:var(--step-0);
+  font-weight:400;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:4px}
+
+.wrap{width:min(1060px,100% - 2.5rem);margin-inline:auto}
+.serif{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif}
+.label{
+  font-size:.6875rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ---------------- masthead ---------------- */
+.hero{
+  background:linear-gradient(178deg,#162332 0%,var(--ink-hero,#101A26) 100%);
+  background-color:#131E2B;
+  color:var(--hero-ink);
+  text-align:center;
+  padding:3rem 0 3.25rem;
+  border-bottom:1px solid var(--hero-line);
+  position:relative;
+}
+.hero::before{
+  content:"";position:absolute;left:0;right:0;top:6px;height:1px;
+  background:var(--hero-line);
+}
+.hero .label{color:var(--brass-lt)}
+.crest{
+  width:38px;height:38px;margin:0 auto 1.35rem;
+  border:1px solid var(--hero-line);
+  display:grid;place-items:center;
+  color:var(--brass-lt);
+}
+.crest svg{width:20px;height:20px;display:block}
+.hero h1{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-weight:500;font-size:var(--step-3);line-height:1.08;
+  letter-spacing:.005em;text-wrap:balance;
+  margin:1.1rem auto .1rem;max-width:16ch;
+}
+.hero h1 em{font-style:italic;color:var(--brass-lt);font-weight:400}
+.hero__lede{
+  margin:1.15rem auto 0;max-width:52ch;
+  color:var(--hero-dim);font-weight:300;font-size:1.0625rem;
+}
+
+/* ornamental divider */
+.rule{
+  display:flex;align-items:center;justify-content:center;gap:.85rem;
+  margin:2rem auto 0;max-width:22rem;color:var(--hero-line);
+}
+.rule::before,.rule::after{content:"";height:1px;flex:1;background:currentColor}
+.rule i{
+  width:6px;height:6px;rotate:45deg;background:var(--brass-lt);display:block;flex:0 0 auto;
+}
+
+/* date + countdown */
+.date-line{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:1.875rem;font-weight:500;letter-spacing:.01em;
+  margin:1.75rem 0 0;color:var(--hero-ink);
+}
+.date-line span{color:var(--brass-lt)}
+.countdown{margin:1.85rem auto 0;max-width:30rem}
+.countdown__label{margin:0 0 1rem}
+.clock{display:grid;grid-template-columns:repeat(4,1fr)}
+.clock__cell{padding:0 .25rem;border-right:1px solid var(--hero-line)}
+.clock__cell:last-child{border-right:0}
+.clock__num{
+  display:block;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-variant-numeric:tabular-nums lining-nums;
+  font-size:2.5rem;line-height:1.1;font-weight:500;
+  color:var(--brass-lt);
+}
+.clock__unit{
+  display:block;margin-top:.35rem;
+  font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--hero-dim);
+}
+.clock.is-live{grid-template-columns:1fr}
+.clock.is-live .clock__cell{border-right:0}
+.clock.is-live .clock__num{font-size:1.75rem;font-style:italic}
+
+/* ---------------- seats ---------------- */
+.seats{padding:3.25rem 0 0}
+.tablist{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0 2.25rem;
+  border-bottom:1px solid var(--line);
+}
+.tab{
+  position:relative;background:none;border:0;cursor:pointer;
+  padding:.65rem .15rem 1rem;
+  font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);
+  transition:color .2s ease;
+}
+.tab:hover{color:var(--ink)}
+.tab::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;
+  background:var(--brass);transform:scaleX(0);transform-origin:center;
+  transition:transform .25s ease;
+}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab[aria-selected="true"]::after{transform:scaleX(1)}
+.tab__count{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:1rem;letter-spacing:0;font-weight:600;
+  color:var(--brass);margin-left:.45rem;vertical-align:.05em;
+}
+
+.seat-head{text-align:center;margin:2.75rem 0 2.25rem}
+.seat-head h2{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-weight:500;font-size:var(--step-2);letter-spacing:.01em;margin:0;
+}
+.seat-head p{margin:.55rem 0 0;font-size:var(--step--1);color:var(--muted);font-style:italic}
+
+/* ---------------- candidates ---------------- */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:2.25rem 1.5rem;padding-bottom:4rem;list-style:none;margin:0;
+  animation:fade .35s ease both;
+}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{
+  display:flex;flex-direction:column;align-items:center;gap:1rem;
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:1.75rem .75rem 1.5rem;
+  box-shadow:var(--shadow);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:var(--hair)}
+.card__frame{position:relative;padding:6px}
+.card__frame::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  border:1px solid var(--brass);opacity:.45;
+  transition:opacity .25s ease,inset .25s ease;
+}
+.card:hover .card__frame::before{opacity:1}
+.card__photo{
+  width:104px;height:104px;border-radius:50%;object-fit:cover;
+  background:var(--brass-tint);
+  filter:grayscale(1);
+  transition:filter .35s ease;
+}
+.card:hover .card__photo{filter:grayscale(0)}
+.card__name{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-weight:600;font-size:1.25rem;line-height:1.25;letter-spacing:.005em;
+  text-align:center;text-wrap:balance;margin:0;
+}
+.card__seat{
+  margin:.2rem 0 0;font-size:.5625rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);
+}
+.empty{
+  grid-column:1/-1;margin:0;padding:3rem 1rem;text-align:center;
+  color:var(--muted);font-style:italic;border:1px solid var(--line);
+}
+
+/* ---------------- footer ---------------- */
+.foot{border-top:1px solid var(--line);background:var(--surface);padding:3rem 0 3.25rem}
+.foot__grid{display:grid;grid-template-columns:1fr;gap:2rem;text-align:center}
+.foot dt{margin:0 0 .55rem}
+.foot dd{
+  margin:0;font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:1.375rem;font-weight:500;line-height:1.3;
+}
+.foot dd small{
+  display:block;margin-top:.35rem;
+  font-family:"Source Sans 3",sans-serif;font-weight:300;
+  font-size:var(--step--1);color:var(--muted);line-height:1.5;
+}
+.foot__note{
+  margin:2.5rem auto 0;padding-top:1.75rem;border-top:1px solid var(--line);
+  font-size:var(--step--1);font-weight:300;color:var(--muted);
+  max-width:64ch;text-align:center;
+}
+
+@media (min-width:640px){
+  :root{--step-3:3.25rem}
+  .hero{padding:4.25rem 0 4rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:2.75rem 1.75rem}
+  .card__photo{width:124px;height:124px}
+  .foot__grid{grid-template-columns:repeat(3,1fr);gap:2.5rem}
+}
+@media (min-width:960px){
+  :root{--step-3:3.75rem}
+  .hero{padding:5rem 0 4.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+  .card:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="crest" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 9h16v11H4z"></path><path d="M9 9V5h6v4"></path><path d="M9.5 14.5l1.8 1.8L15 12.5"></path>
+      </svg>
+    </div>
+    <p class="label">Indian Institute of Technology (BHU) Varanasi</p>
+    <h1>CSE Freshers <em>CR Elections</em> 2026</h1>
+    <p class="hero__lede">Eleven candidates stand for election to the three Class Representative seats of the first-year Computer Science &amp; Engineering batch.</p>
+
+    <div class="rule" aria-hidden="true"><i></i></div>
+
+    <p class="date-line serif">Polling on <span id="date-line-date">Friday, 4 September 2026</span></p>
+
+    <div class="countdown">
+      <p class="label countdown__label" id="clock-label">Time remaining</p>
+      <div class="clock" id="clock" role="timer" aria-live="off" aria-labelledby="clock-label"></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap seats" id="seats">
+  <div class="tablist" role="tablist" aria-label="Choose a seat"></div>
+
+  <div class="seat-head">
+    <h2 id="seat-title"></h2>
+    <p id="seat-count"></p>
+  </div>
+
+  <ul class="grid" id="grid" role="tabpanel" aria-labelledby="seat-title"></ul>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <dl class="foot__grid">
+      <div><dt class="label">Date of poll</dt><dd id="foot-date"></dd></div>
+      <div><dt class="label">Mode</dt><dd id="foot-mode"></dd></div>
+      <div><dt class="label">Hours</dt><dd id="foot-timing"></dd></div>
+    </dl>
+    <p class="foot__note">Unofficial candidate listing maintained by the CSE freshers&rsquo; election volunteers. This page lists candidates only and does not collect votes. Particulars remain subject to change until the returning officer&rsquo;s final notice.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT EVERYTHING BELOW THIS LINE
+   ============================================================ */
+
+// Countdown target — when voting opens (IST). YYYY-MM-DDTHH:MM:SS+05:30
+const VOTING_OPENS = "2026-09-04T09:00:00+05:30";
+
+// Footer + masthead details.
+const LOGISTICS = {
+  date:       "Friday, 4 September 2026",
+  dateNote:   "Odd semester, 2026–27",
+  mode:       "Online",
+  modeNote:   "Voting link circulated on the class group",
+  timing:     "09:00 – 17:00 IST",
+  timingNote: "Hours to be confirmed"
+};
+
+// The three seats, in tab order.
+const SEATS = [
+  { id: "girls", label: "Girls' Seat", title: "Girls' Representative", note: "" },
+  { id: "boys",  label: "Boys' Seat",  title: "Boys' Representative",  note: "" },
+  { id: "open",  label: "Open Seat",   title: "Open / Neutral Seat",   note: "contested by every candidate" }
+];
+
+// Candidates. `seat` is "girls" or "boys".
+// `photo`: a path or URL, e.g. "photos/soma-srinidhi.jpg". Leave "" for an initials avatar.
+const CANDIDATES = [
+  { name: "Soma Srinidhi",   seat: "girls", photo: "" },
+  { name: "Ashika Agrawal",  seat: "girls", photo: "" },
+
+  { name: "Sumit Kasaudhan", seat: "boys",  photo: "" },
+  { name: "Pranab Kumar",    seat: "boys",  photo: "" },
+  { name: "Rajat Dubey",     seat: "boys",  photo: "" },
+  { name: "Aditya Narayan",  seat: "boys",  photo: "" },
+  { name: "Harsh Modi",      seat: "boys",  photo: "" },
+  { name: "Maddi Saketh",    seat: "boys",  photo: "" },
+  { name: "Aadvik Nautiyal", seat: "boys",  photo: "" },
+  { name: "Sahil Gupta",     seat: "boys",  photo: "" },
+  { name: "Gopal Saxena",    seat: "boys",  photo: "" }
+];
+
+// Who appears under the Open seat.
+//   "all"                            -> every candidate above (2 girls + 9 boys)
+//   ["Harsh Modi", "Soma Srinidhi"]  -> only these names
+const OPEN_SEAT = "all";
+
+/* ============================================================
+   NO EDITS NEEDED BELOW
+   ============================================================ */
+
+const $ = (sel) => document.querySelector(sel);
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[ch]));
+}
+
+/* --- placeholder portrait: initials, engraved style --- */
+function initials(name) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+function cssVar(name, fallback) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+function avatar(name) {
+  const bg = cssVar("--surface", "#FFFFFF");
+  const fg = cssVar("--brass", "#9C7C38");
+  const line = cssVar("--line", "#E2E1DA");
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">' +
+      '<circle cx="60" cy="60" r="60" fill="' + bg + '"/>' +
+      '<circle cx="60" cy="60" r="59" fill="none" stroke="' + line + '" stroke-width="1"/>' +
+      '<text x="60" y="62" fill="' + fg + '" font-family="Cormorant Garamond, Georgia, serif"' +
+      ' font-size="44" font-weight="500" letter-spacing="2"' +
+      ' text-anchor="middle" dominant-baseline="central">' + escapeHtml(initials(name)) + '</text>' +
+    '</svg>';
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+/* --- countdown --- */
+const clockEl = $("#clock");
+const clockLabel = $("#clock-label");
+const target = new Date(VOTING_OPENS).getTime();
+let ticker;
+
+const pad = (n) => String(n).padStart(2, "0");
+
+function renderClock() {
+  const diff = target - Date.now();
+  if (diff <= 0) {
+    clockEl.classList.add("is-live");
+    clockLabel.textContent = "Status";
+    clockEl.innerHTML =
+      '<div class="clock__cell"><span class="clock__num">Polling is open</span>' +
+      '<span class="clock__unit">Voting link on the class group</span></div>';
+    clearInterval(ticker);
+    return;
+  }
+  const s = Math.floor(diff / 1000);
+  const cells = [
+    [Math.floor(s / 86400),     "Days"],
+    [Math.floor(s / 3600) % 24, "Hours"],
+    [Math.floor(s / 60) % 60,   "Minutes"],
+    [s % 60,                    "Seconds"]
+  ];
+  clockEl.innerHTML = cells.map(([v, u]) =>
+    '<div class="clock__cell"><span class="clock__num">' + pad(v) + '</span>' +
+    '<span class="clock__unit">' + u + '</span></div>'
+  ).join("");
+}
+
+/* --- seats + grid --- */
+const tablist = $(".tablist");
+const grid = $("#grid");
+const seatTitle = $("#seat-title");
+const seatCount = $("#seat-count");
+
+function bySeat(id) {
+  if (id === "open") {
+    if (OPEN_SEAT === "all") return CANDIDATES.slice();
+    return CANDIDATES.filter((c) => OPEN_SEAT.includes(c.name));
+  }
+  return CANDIDATES.filter((c) => c.seat === id);
+}
+const seatLabelOf = (c) => (SEATS.find((s) => s.id === c.seat) || {}).title || "";
+
+function renderTabs() {
+  tablist.innerHTML = SEATS.map((s, i) =>
+    '<button class="tab" role="tab" type="button" id="tab-' + s.id + '"' +
+    ' aria-selected="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '"' +
+    ' data-seat="' + s.id + '">' +
+    escapeHtml(s.label) +
+    '<span class="tab__count">' + bySeat(s.id).length + '</span>' +
+    '</button>'
+  ).join("");
+}
+
+function selectSeat(id) {
+  const seat = SEATS.find((s) => s.id === id) || SEATS[0];
+  const list = bySeat(seat.id);
+
+  tablist.querySelectorAll(".tab").forEach((btn) => {
+    const on = btn.dataset.seat === seat.id;
+    btn.setAttribute("aria-selected", String(on));
+    btn.tabIndex = on ? 0 : -1;
+  });
+
+  seatTitle.textContent = seat.title;
+  const count = list.length + (list.length === 1 ? " candidate" : " candidates");
+  seatCount.textContent = seat.note ? count + " — " + seat.note : count;
+  grid.setAttribute("aria-labelledby", "tab-" + seat.id);
+
+  const showSeatLine = seat.id === "open";
+
+  grid.innerHTML = list.length
+    ? list.map((c) => {
+        const src = c.photo ? escapeHtml(c.photo) : avatar(c.name);
+        return '<li class="card">' +
+          '<span class="card__frame">' +
+            '<img class="card__photo" src="' + src + '" alt="' + escapeHtml(c.name) + '"' +
+            ' width="124" height="124" loading="lazy" decoding="async">' +
+          '</span>' +
+          '<span>' +
+            '<p class="card__name">' + escapeHtml(c.name) + '</p>' +
+            (showSeatLine ? '<p class="card__seat">' + escapeHtml(seatLabelOf(c)) + '</p>' : '') +
+          '</span>' +
+        '</li>';
+      }).join("")
+    : '<li class="empty">No candidates listed for this seat yet.</li>';
+
+  /* restart the fade for the new set */
+  grid.style.animation = "none";
+  void grid.offsetWidth;
+  grid.style.animation = "";
+}
+
+tablist.addEventListener("click", (e) => {
+  const btn = e.target.closest(".tab");
+  if (btn) selectSeat(btn.dataset.seat);
+});
+tablist.addEventListener("keydown", (e) => {
+  const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 1, ArrowUp: -1 };
+  if (!(e.key in step)) return;
+  e.preventDefault();
+  const i = SEATS.findIndex((s) => s.id === document.activeElement.dataset.seat);
+  const next = SEATS[(i + step[e.key] + SEATS.length) % SEATS.length];
+  selectSeat(next.id);
+  tablist.querySelector('[data-seat="' + next.id + '"]').focus();
+});
+
+/* redraw initials portraits if the viewer flips their system theme */
+const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+const onSchemeChange = () => {
+  const active = tablist.querySelector('[aria-selected="true"]');
+  selectSeat(active ? active.dataset.seat : SEATS[0].id);
+};
+if (scheme.addEventListener) scheme.addEventListener("change", onSchemeChange);
+
+/* --- boot --- */
+const field = (value, note) => escapeHtml(value) + "<small>" + escapeHtml(note) + "</small>";
+$("#date-line-date").textContent = LOGISTICS.date;
+$("#foot-date").innerHTML = field(LOGISTICS.date, LOGISTICS.dateNote);
+$("#foot-mode").innerHTML = field(LOGISTICS.mode, LOGISTICS.modeNote);
+$("#foot-timing").innerHTML = field(LOGISTICS.timing, LOGISTICS.timingNote);
+
+renderTabs();
+selectSeat(SEATS[0].id);
+renderClock();
+ticker = setInterval(renderClock, 1000);
+</script>
+</body>
+</html>
