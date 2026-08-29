@@ -153,19 +153,65 @@ button{font:inherit;color:inherit}
   display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));
   gap:1.75rem 1rem;padding-bottom:4rem;list-style:none;margin:0;
 }
-.card{display:flex;flex-direction:column;align-items:center;gap:.85rem}
+.card{display:flex}
+.card__btn{
+  display:flex;flex-direction:column;align-items:center;gap:.85rem;
+  width:100%;background:none;border:0;padding:0;
+  cursor:zoom-in;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
 .card__photo{
   width:84px;height:84px;border-radius:50%;object-fit:cover;
   background:var(--surface);
   box-shadow:0 0 0 1px var(--line);
   transition:box-shadow .2s ease;
 }
-@media (hover:hover){.card:hover .card__photo{box-shadow:0 0 0 1px var(--seat)}}
+@media (hover:hover){.card__btn:hover .card__photo{box-shadow:0 0 0 1px var(--seat)}}
 .card__name{
-  margin:0;font-weight:500;font-size:var(--step--1);line-height:1.4;
+  display:block;margin:0;font-weight:500;font-size:var(--step--1);line-height:1.4;
   letter-spacing:-.02em;text-align:center;text-wrap:balance;color:var(--ink);
 }
 .empty{grid-column:1/-1;margin:0;color:var(--faint);font-size:var(--step--1)}
+
+/* ---------------- lightbox ---------------- */
+.lightbox{
+  border:0;padding:0;background:transparent;
+  width:min(420px,92vw);max-width:92vw;max-height:92dvh;
+  color:var(--ink);overflow:visible;
+}
+.lightbox::backdrop{background:rgba(6,10,16,.74)}
+.lightbox[open]{animation:lb-in .18s ease both}
+@keyframes lb-in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.lb__inner{
+  background:var(--bg);border:1px solid var(--line);border-radius:14px;
+  padding:.75rem .75rem 1rem;
+}
+.lb__img{
+  width:100%;aspect-ratio:1;object-fit:cover;
+  border-radius:10px;background:var(--surface);
+}
+.lb__name{margin:.9rem 0 0;font-weight:700;font-size:var(--step-0);letter-spacing:-.03em}
+.lb__seat{margin:.15rem 0 0;font-size:var(--step--1);color:var(--faint)}
+.lb__seat::before{content:"// "}
+.lb__bar{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.9rem}
+.lb__pager{font-size:var(--step--1);color:var(--faint);font-variant-numeric:tabular-nums}
+.lb__btns{display:flex;gap:.4rem}
+.lb__btn{
+  min-width:38px;min-height:38px;padding:.3rem .6rem;cursor:pointer;
+  background:none;border:1px solid var(--line);border-radius:6px;
+  color:var(--muted);font-size:var(--step--1);
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:background .15s ease,color .15s ease;
+}
+.lb__btn[disabled]{opacity:.35;cursor:default}
+@media (hover:hover){.lb__btn:not([disabled]):hover{background:var(--hover);color:var(--ink)}}
+.lb__close{
+  position:absolute;top:-.75rem;right:-.75rem;
+  width:34px;height:34px;border-radius:50%;cursor:pointer;
+  background:var(--bg);border:1px solid var(--line);color:var(--muted);
+  display:grid;place-items:center;line-height:1;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+@media (hover:hover){.lb__close:hover{color:var(--ink);background:var(--hover)}}
 
 /* ---------------- footer ---------------- */
 .foot{border-top:1px solid var(--line);padding:2.25rem 0 calc(3rem + env(safe-area-inset-bottom))}
@@ -183,7 +229,7 @@ button{font:inherit;color:inherit}
   .foot__grid{grid-template-columns:repeat(3,1fr);gap:2rem}
 }
 @media (prefers-reduced-motion:reduce){
-  *{transition-duration:.01ms !important}
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
 </style>
 </head>
@@ -229,6 +275,22 @@ button{font:inherit;color:inherit}
     <p class="foot__note">// Unofficial listing kept by the CSE freshers&rsquo; election volunteers. Candidates only &mdash; this page does not collect votes. Details may change until the returning officer&rsquo;s final notice.</p>
   </div>
 </footer>
+
+<dialog class="lightbox" id="lightbox" aria-labelledby="lb-name">
+  <div class="lb__inner" style="position:relative">
+    <button class="lb__close" type="button" id="lb-close" aria-label="Close">&times;</button>
+    <img class="lb__img" id="lb-img" src="" alt="" decoding="async">
+    <p class="lb__name" id="lb-name"></p>
+    <p class="lb__seat" id="lb-seat"></p>
+    <div class="lb__bar">
+      <span class="lb__pager" id="lb-pager"></span>
+      <span class="lb__btns">
+        <button class="lb__btn" type="button" id="lb-prev" aria-label="Previous candidate">&larr;</button>
+        <button class="lb__btn" type="button" id="lb-next" aria-label="Next candidate">&rarr;</button>
+      </span>
+    </div>
+  </div>
+</dialog>
 
 <script>
 /* ============================================================
@@ -421,6 +483,7 @@ const tablist = $(".tablist");
 const grid = $("#grid");
 const seatTitle = $("#seat-title");
 const seatCount = $("#seat-count");
+let shown = [];   /* candidates currently in the grid, in display order */
 
 function bySeat(id) {
   if (id === "open") {
@@ -457,16 +520,20 @@ function selectSeat(id) {
   grid.setAttribute("aria-labelledby", "tab-" + seat.id);
 
   grid.innerHTML = list.length
-    ? list.map((c) =>
+    ? list.map((c, i) =>
         '<li class="card">' +
-          '<img class="card__photo" alt="' + escapeHtml(c.name) + '"' +
-          ' width="96" height="96" loading="lazy" decoding="async">' +
-          '<p class="card__name">' + escapeHtml(c.name) + '</p>' +
+          '<button class="card__btn" type="button" data-i="' + i + '"' +
+          ' aria-label="Show photo of ' + escapeHtml(c.name) + '">' +
+            '<img class="card__photo" alt="' + escapeHtml(c.name) + '"' +
+            ' width="96" height="96" loading="lazy" decoding="async">' +
+            '<span class="card__name">' + escapeHtml(c.name) + '</span>' +
+          '</button>' +
         '</li>'
       ).join("")
     : '<li class="empty">// nobody listed yet</li>';
 
   grid.querySelectorAll(".card__photo").forEach((img, i) => wirePhoto(img, list[i]));
+  shown = list;
 }
 
 tablist.addEventListener("click", (e) => {
@@ -482,6 +549,70 @@ tablist.addEventListener("keydown", (e) => {
   selectSeat(next.id);
   tablist.querySelector('[data-seat="' + next.id + '"]').focus();
 });
+
+/* --- lightbox --- */
+const lb = $("#lightbox");
+const lbImg = $("#lb-img");
+const lbName = $("#lb-name");
+const lbSeat = $("#lb-seat");
+const lbPager = $("#lb-pager");
+const lbPrev = $("#lb-prev");
+const lbNext = $("#lb-next");
+let lbIndex = 0;
+let lastFocus = null;
+
+function paintLightbox() {
+  const c = shown[lbIndex];
+  if (!c) return;
+  const card = grid.querySelector('.card__btn[data-i="' + lbIndex + '"] .card__photo');
+  lbImg.src = card ? card.src : avatar(c.name);   /* reuse whatever the card resolved */
+  lbImg.alt = c.name;
+  lbName.textContent = c.name;
+  lbSeat.textContent = (SEATS.find((s) => s.id === c.seat) || {}).title || "";
+  lbPager.textContent = (lbIndex + 1) + " / " + shown.length;
+  const solo = shown.length < 2;
+  lbPrev.disabled = solo;
+  lbNext.disabled = solo;
+}
+
+function openLightbox(i) {
+  lbIndex = i;
+  lastFocus = document.activeElement;
+  paintLightbox();
+  if (typeof lb.showModal === "function") lb.showModal();
+  else lb.setAttribute("open", "");
+}
+function stepLightbox(d) {
+  if (shown.length < 2) return;
+  lbIndex = (lbIndex + d + shown.length) % shown.length;
+  paintLightbox();
+}
+
+grid.addEventListener("click", (e) => {
+  const btn = e.target.closest(".card__btn");
+  if (btn) openLightbox(Number(btn.dataset.i));
+});
+lbPrev.addEventListener("click", () => stepLightbox(-1));
+lbNext.addEventListener("click", () => stepLightbox(1));
+$("#lb-close").addEventListener("click", () => lb.close());
+
+/* click the dark area to dismiss */
+lb.addEventListener("click", (e) => { if (e.target === lb) lb.close(); });
+lb.addEventListener("close", () => { if (lastFocus) lastFocus.focus(); });
+lb.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") { e.preventDefault(); stepLightbox(-1); }
+  if (e.key === "ArrowRight") { e.preventDefault(); stepLightbox(1); }
+});
+
+/* swipe between candidates on touch */
+let lbStartX = null;
+lb.addEventListener("touchstart", (e) => { lbStartX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", (e) => {
+  if (lbStartX === null) return;
+  const dx = e.changedTouches[0].clientX - lbStartX;
+  if (Math.abs(dx) > 45) stepLightbox(dx < 0 ? 1 : -1);
+  lbStartX = null;
+}, { passive: true });
 
 /* --- boot --- */
 const field = (value, note) => escapeHtml(value) + "<small>" + escapeHtml(note) + "</small>";
