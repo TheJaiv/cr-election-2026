@@ -17,8 +17,11 @@ Preferred filenames:
   photos/harsh-modi.jpg        (harsh_modi.jpeg already works)
   photos/maddi-saketh.jpg
   photos/aadvik-nautiyal.jpg
-  photos/sahil-gupta.jpg       (currently pinned to sahil.png.jpeg in index.html)
+  photos/sahil-gupta.jpg
   photos/gopal-saxena.jpg
+
+Use LOWERCASE filenames. GitHub Pages is case-sensitive, so Maddi_saketh.jpeg
+404s online even though it opens fine on a Mac. build.py warns about this.
 
 Recommended: square crop, 400x400 px or larger, under ~200 KB each.
 To use a filename that does not match the patterns above, set that candidate's

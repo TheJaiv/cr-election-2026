@@ -66,6 +66,11 @@ def data_uri(path):
 
 
 def main():
+    for f in sorted(PHOTOS.glob("*")):
+        if f.name != f.name.lower() and f.suffix.lower() != ".txt":
+            print(f"  WARNING   {f.name} has uppercase letters — rename it to "
+                  f"{f.name.lower()}, or it will 404 on GitHub Pages")
+
     html = SRC.read_text()
 
     block = re.search(r"const CANDIDATES = \[(.*?)\n\];", html, re.S)
